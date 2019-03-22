@@ -1,0 +1,100 @@
+.HH a {
+  color: #999;
+  margin: 5px 0;
+}
+.HH a.router-link-exact-active {
+  color: #333;
+  font-weight: bold;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+.HH .back {
+  background-image: url('../assets/images/icon/back.png');
+}
+.HH .header {
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.11);
+}
+.HH .right-nav-box {
+  box-shadow: -2px 1px 5px rgba(0, 0, 0, 0.11);
+}
+.HH .right-nav-search {
+  background-image: url('../assets/images/icon/search.png');
+}
+.HH .right-nav-bag {
+  background-image: url('../assets/images/icon/bag.png');
+}
+.II a {
+  color: green;
+  margin: 5px 0;
+}
+.II a.router-link-exact-active {
+  color: #333;
+  font-weight: bold;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+.II .back {
+  background-image: url('../assets/images/icon/back.png');
+}
+.II .header {
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.11);
+}
+.II .right-nav-box {
+  box-shadow: -2px 1px 5px rgba(0, 0, 0, 0.11);
+}
+.II .right-nav-search {
+  background-image: url('../assets/images/icon/search.png');
+}
+.II .right-nav-bag {
+  background-image: url('../assets/images/icon/bag.png');
+}
+.TAO a {
+  color: yellow;
+  margin: 5px 0;
+}
+.TAO a.router-link-exact-active {
+  color: #333;
+  font-weight: bold;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+.TAO .back {
+  background-image: url('../assets/images/icon/back.png');
+}
+.TAO .header {
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.11);
+}
+.TAO .right-nav-box {
+  box-shadow: -2px 1px 5px rgba(0, 0, 0, 0.11);
+}
+.TAO .right-nav-search {
+  background-image: url('../assets/images/icon/search.png');
+}
+.TAO .right-nav-bag {
+  background-image: url('../assets/images/icon/bag.png');
+}
+.MP a {
+  color: gray;
+  margin: 5px 0;
+}
+.MP a.router-link-exact-active {
+  color: #333;
+  font-weight: bold;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+.MP .back {
+  background-image: url('../assets/images/icon/back.png');
+}
+.MP .header {
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.11);
+}
+.MP .right-nav-box {
+  box-shadow: -2px 1px 5px rgba(0, 0, 0, 0.11);
+}
+.MP .right-nav-search {
+  background-image: url('../assets/images/icon/search.png');
+}
+.MP .right-nav-bag {
+  background-image: url('../assets/images/icon/bag.png');
+}

@@ -35,6 +35,13 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data() {
+    return {
+      less: ''
+    }
+  },
+  created () {
   }
 }
 </script>
@@ -51,8 +58,5 @@ ul {
 li {
   display: inline-block;
   margin: 0 10px;
-}
-a {
-  color: #42b983;
 }
 </style>

@@ -2,15 +2,51 @@
   <div class="right-nav">
     <router-view class="roter-view"/>
     <div class="right-nav-box">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <div class="right-nav-top">
+        <div class="right-nav-search"></div>
+        <div class="right-nav-bag"></div>
+        <div class="right-nav-router">
+          <router-link v-for="(item, index) in navData" :key="index" :to="item.url">{{item.text}}</router-link> 
+        </div>
+      </div>
+      <div class="back"></div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'RightNav'
+  name: 'RightNav',
+  data() {
+    return {
+      navData:[
+        {
+          text: '灵感居室',
+          url: '/'
+        },
+        {
+          text: '热卖商品',
+          url: '/about'
+        },
+        {
+          text: '方案中心',
+          url: '/about.1'
+        },
+        {
+          text: '视频中心',
+          url: '/about.2'
+        },
+        {
+          text: '会员中心',
+          url: '/about.3'
+        },
+        {
+          text: '在线杂质',
+          url: '/about.4'
+        }
+      ]
+    }
+  },
 }
 </script>
 
@@ -18,20 +54,45 @@ export default {
 <style scoped lang="less">
 .right-nav {
   display: flex;
-  height: 61.25rem;
+  height: 980px;
+  position: relative;
+  z-index: 8;
   .roter-view{
-    flex: 1;
+    width: 1720px;
   }
   .right-nav-box{
-    width: 12.5rem;
+    width: 200px;
     background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  .right-nav-top{
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+  }
+  .right-nav-router{
+    display: flex;
+    flex-direction: column;
+    line-height: 50px;
+    margin-top: 100px;
+  }
+  .right-nav-search, .right-nav-bag{
+    width: 60px;
+    height: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 30px auto 0;
+  } 
+  .back{
+    width: 60px;
+    height: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto 40px;
   }
 }
 </style>

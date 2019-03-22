@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import api from '../lib/api/axios.js'
 export default {
   name: 'Header',
   props: {
@@ -32,7 +31,7 @@ export default {
           currentImage: 'https://res.purmall.com/Uploads/DeviceBrandCompany/089f8d86424447ff93c8bada7633224e.png'
         },
         {
-          brandId: 'Tao',
+          brandId: 'TAO',
           router: 'http://12.3135.15',
           image: 'https://res.purmall.com/Uploads/DeviceBrandCompany/eae4b3112b394e35bdd9e956f5372930.png',
           currentImage: 'https://res.purmall.com/Uploads/DeviceBrandCompany/f89964b8263243e1961b31d10f92177b.png'
@@ -58,7 +57,8 @@ export default {
     brandChange: function (currentImage, id) {
       this.currentImage = currentImage
       this.$store.commit('changeSkin', id)
-      console.log(api)
+      //通过id 请求 获取不同品牌的数据源 和 不同皮肤
+      console.log(this.$store.state.skin)
     }
   }
 }
@@ -69,22 +69,21 @@ export default {
 .header{
   display: flex;
   justify-content: space-between;
-  height: 6.25rem;
+  height: 100px;
   align-items: center;
-  box-shadow: 0 2px 5px rgba(61,61,61,0.35);
   position: relative;
   z-index: 9;
   .brand{
     display: flex;
     align-items: center;
     img{
-      margin-left: 3.125rem;
+      margin-left: 40px;
     }
   }
   .currentImage{
-    width: 31.25rem;
-    height: 3.125rem;
-    margin-right: 3.125rem;
+    width: 300px;
+    height: 60px;
+    margin-right: 40px;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: right;

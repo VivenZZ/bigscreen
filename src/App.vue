@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="className()">
     <Header brandId="HH"/>
     <RightNav />
   </div>
@@ -9,14 +9,21 @@ import Header from '@/components/Header.vue'
 import RightNav from '@/components/RightNav.vue'
 export default {
   name: 'app',
+  data() {
+    return{}
+  },
   components: {
     Header,
     RightNav
-  }
+  },
+  methods: {
+    className: function () {
+      return this.$store.state.skin
+    }
+  },
 }
 </script>
 <style lang="less">
-@import "../src/lib/reset.css";
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
