@@ -5,10 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-
+    skin: 'hh'
   },
   mutations: {
-
+    changeSkin (state, str) {
+      state.skin = str
+    }
   },
   actions: {
 
