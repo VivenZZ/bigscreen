@@ -23,27 +23,27 @@ export default new Router({
     },
     {
       path: '/about.1',
-      name: 'about',
+      name: 'about.1',
       component: () => import(/* webpackChunkName: "about" */ './views/About.1.vue')
     },
     {
       path: '/about.2',
-      name: 'about',
+      name: 'about.2',
       component: () => import(/* webpackChunkName: "about" */ './views/About.2.vue')
     },
     {
       path: '/about.3',
-      name: 'about',
+      name: 'about.3',
       component: () => import(/* webpackChunkName: "about" */ './views/About.3.vue')
     },
     {
       path: '/about.4',
-      name: 'about',
+      name: 'about.4',
       component: () => import(/* webpackChunkName: "about" */ './views/About.4.vue')
     },
     {
       path: '/about.5',
-      name: 'about',
+      name: 'about.5',
       component: () => import(/* webpackChunkName: "about" */ './views/About.5.vue')
     }
   ]

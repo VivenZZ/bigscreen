@@ -1,5 +1,5 @@
 <template>
-  <div class="right-nav">
+  <div class="container">
     <router-view class="roter-view"/>
     <div class="right-nav-box">
       <div class="right-nav-top">
@@ -41,7 +41,7 @@ export default {
           url: '/about.3'
         },
         {
-          text: '在线杂质',
+          text: '在线杂志',
           url: '/about.4'
         }
       ]
@@ -52,7 +52,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-.right-nav {
+.container {
   display: flex;
   height: 980px;
   position: relative;

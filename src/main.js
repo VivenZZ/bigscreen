@@ -5,6 +5,13 @@ import store from './store'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 // require styles
 import 'swiper/dist/css/swiper.css'
+import VueLazyLoad from 'vue-lazyload' // 懒加载
+
+Vue.use(VueLazyLoad,{
+  attempt: 1,
+  error: './static/error.png',
+  loading: require('../src/assets/images/icon/loading.gif')
+})
 require("../src/lib/reset.css")
 require("../src/lib/skin.less")
 Vue.use(VueAwesomeSwiper, /* { default global options } */)
