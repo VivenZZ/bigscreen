@@ -9,11 +9,10 @@
 </template>
 
 <script>
+import {InitMixins} from '../lib/mixins/init.js'
 export default {
   name: 'Header',
-  props: {
-    brandId: String
-  },
+  mixins: [InitMixins],
   data() {
     return {
       currentImage: '',
@@ -58,7 +57,7 @@ export default {
       this.currentImage = currentImage
       this.$store.commit('changeSkin', id)
       //通过id 请求 获取不同品牌的数据源 和 不同皮肤
-      console.log(this.$store.state.skin)
+      this.reload()
     }
   }
 }

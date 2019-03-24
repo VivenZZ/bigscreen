@@ -14,7 +14,7 @@
   background-color: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.11);
 }
-.HH .right-nav-box {
+.HH .right-nav {
   box-shadow: -2px 1px 5px rgba(0, 0, 0, 0.11);
 }
 .HH .right-nav-search {

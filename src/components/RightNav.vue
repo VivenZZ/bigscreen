@@ -1,16 +1,13 @@
 <template>
-  <div class="container">
-    <router-view class="roter-view"/>
-    <div class="right-nav-box">
-      <div class="right-nav-top">
-        <div class="right-nav-search"></div>
-        <div class="right-nav-bag"></div>
-        <div class="right-nav-router">
-          <router-link v-for="(item, index) in navData" :key="index" :to="item.url">{{item.text}}</router-link> 
-        </div>
+  <div class="right-nav">
+    <div class="right-nav-top">
+      <div class="right-nav-search"></div>
+      <div class="right-nav-bag"></div>
+      <div class="right-nav-router">
+        <router-link v-for="(item, index) in navData" :key="index" :to="item.url">{{item.text}}</router-link> 
       </div>
-      <div class="back"></div>
     </div>
+    <div class="back"></div>
   </div>
 </template>
 
@@ -46,27 +43,13 @@ export default {
         }
       ]
     }
-  },
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-.container {
-  display: flex;
-  height: 980px;
-  position: relative;
-  z-index: 8;
-  .roter-view{
-    width: 1720px;
-  }
-  .right-nav-box{
-    width: 200px;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+.right-nav{
   .right-nav-top{
     display: flex;
     flex-direction: column;

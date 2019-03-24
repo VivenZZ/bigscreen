@@ -5,7 +5,13 @@ import store from './store'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 // require styles
 import 'swiper/dist/css/swiper.css'
-import VueLazyLoad from 'vue-lazyload' // 懒加载
+import VueLazyLoad from 'vue-lazyload' // 懒加载import axios from 'axios'
+import {post,fetch,patch,put} from '../src/lib/api/axios.js'
+//定义全局变量
+Vue.prototype.$post=post;
+Vue.prototype.$fetch=fetch;
+Vue.prototype.$patch=patch;
+Vue.prototype.$put=put;
 
 Vue.use(VueLazyLoad,{
   attempt: 1,
