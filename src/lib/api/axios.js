@@ -6,8 +6,9 @@ let node = 'Local'
 // let node = 'Formal'
 const baseUrl = function(){
   switch (node) {
-    case 'Local':
-      return ''
+    case 'Local': 
+      // easy mock的请求接口
+      return 'https://www.easy-mock.com/mock/5c7df07ac05ec81060cf5443/test'
     case 'Test':
       return '192.168.13.16'
     case 'Integrate':
@@ -21,8 +22,7 @@ const baseUrl = function(){
 
 // 设置全局配置
 axios.defaults.timeout = 5000
-axios.defaults.baseUrl = baseUrl
-
+axios.defaults.baseURL = baseUrl
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么

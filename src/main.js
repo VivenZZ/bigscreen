@@ -14,7 +14,7 @@ Vue.prototype.$patch=patch;
 Vue.prototype.$put=put;
 
 Vue.use(VueLazyLoad,{
-  attempt: 1,
+  attempt: 3,
   error: './static/error.png',
   loading: require('../src/assets/images/icon/loading.gif')
 })
