@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <transitionTemple>
+    <transitionTemple :transitionData="'fade'">
       <div v-if="showSwiper">
         <swiper :options="swiperOptionTop" ref="galleryTop" class="swiperTop banner">
           <swiper-slide v-for="(item, index) in swiperData" 
@@ -11,21 +11,24 @@
           <div class="swiper-button-prev" slot="button-prev"></div>
           <div class="swiper-button-next" slot="button-next"></div>
         </swiper>
-        <swiper :options="swiperOptionThumbs" ref="galleryThumbs" class="swiperThumbs">
-          <swiper-slide v-for="(item, index) in swiperData" 
-          :key="index">
-            <img v-lazy="item.bgPic" :key="item.bgPic">
-            <div v-if="text" class="swiper-bg">
-              <div>名称</div>
-              <div>面积</div>
-            </div>
-          </swiper-slide>
-        </swiper>
-        <div class="sort">
-          <div @click="sortFunction(item, index)" :class="currentSort === index ? 'current': ''" v-for="(item, index) in sort" :key="index">{{item}}</div>
-        </div>
-        <div class="btn">
-          <div @click="btnFunction(item, index)" :class="currentBtn[index] === 1 ? 'current': ''" v-for="(item, index) in btn" :key="index">{{item}}</div>
+        <div class="tags-box" v-if="tagsBox">
+          <div class="sort">
+            <div @click="sortFunction(item, index)" :class="currentSort === index ? 'current': ''" v-for="(item, index) in sort" :key="index">{{item}}</div>
+          </div>
+          <swiper :options="swiperOptionThumbs" ref="galleryThumbs" class="swiperThumbs">
+            <swiper-slide v-for="(item, index) in swiperData" 
+            :key="index">
+              <img v-lazy="item.bgPic" :key="item.bgPic">
+              <div v-if="text" class="swiper-bg">
+                <div>名称</div>
+                <div>面积</div>
+              </div>
+            </swiper-slide>
+          </swiper>
+          <div class="btn">
+            <div @click="btnFunction(item, index)" :class="currentBtn[index] === 1 ? 'current': ''" v-for="(item, index) in btn" :key="index">{{item}}</div>
+          </div>
+          <div class="showbtn" @click="handleClick">展开</div>
         </div>
       </div>
     </transitionTemple>
@@ -47,13 +50,14 @@ export default {
   },
   data() {
     return {
+      tagsBox: true,
       sort:[],
-      btn:['切换空间', '空间单品', '空间分享'],
+      btn:['空间单品', '空间分享'],
       sourceData: [],
       swiperData: [],
       text: '',
       currentSort: '',
-      currentBtn: [1, 0, 0],
+      currentBtn: [0, 0],
       swiperOptionTop: {
         observer: true,
         observeParents: true,
@@ -158,6 +162,9 @@ export default {
       }
       return sortData
     },
+    handleClick: function() {
+      this.tagsBox = !this.tagsBox
+    }
   }
 };
 </script>
@@ -204,10 +211,8 @@ export default {
     height: 980px;
   }
   .swiperThumbs{
-    position: fixed;
-    bottom: 0;
-    width: 90%;
-    height: 200px;
+    width: 100%;
+    height: 160px;
     background-color: rgba(0 , 0, 0, 1);
     padding: 10px 0;
     box-sizing: border-box;
@@ -260,37 +265,39 @@ export default {
       margin:0 10px;
     }
   }
-  .sort{
+  .tags-box{
     position: fixed;
-    bottom: 200px;
-    left: 0;
+    width: 90%;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    z-index: 9;
+  }
+  .sort, .btn{
     display: flex;
     flex-direction: row;
     z-index: 3;
     div{
-      padding: 10px 30px;
+      padding: 10px 20px;
       background-color: rgba(0, 0, 0, 0.8);
       color: #666;
+      writing-mode: vertical-lr;
     }
     .current{
       color: #fff;
     }
   }
-  .btn{
-    position: fixed;
-    bottom: 200px;
-    right: 10%;
-    display: flex;
-    flex-direction: row;
-    z-index: 3;
-    div{
-      padding: 10px 30px;
-      background-color: rgba(0, 0, 0, 0.8);
-      color: #666;
-    }
-    .current{
-      color: #fff;
-    }
+  .showbtn{
+    padding: 0 20px;
+    height: 50px;
+    line-height: 50px;
+    position: absolute;
+    top: -50px;
+    right: 300px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #666;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
 }
 </style>
