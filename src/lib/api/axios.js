@@ -29,7 +29,6 @@ axios.interceptors.request.use(function (config) {
 
   // 调用store showLoading方法
   store.commit('showLoading')
-  console.log('loading...')
   return config;
 }, function (error) {
   // 对请求错误做些什么
@@ -42,7 +41,6 @@ axios.interceptors.response.use(function (response) {
 
   // 调用store hideLoading方法
   store.commit('hideLoading')
-  console.log('end...')
   return response;
 }, function (error) {
   // 对响应错误做点什么

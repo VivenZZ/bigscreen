@@ -67,7 +67,6 @@ export default {
       })
     },
     fadeAfterEnter: () => {
-      console.log('渐隐渐现动画结束')
     }
   }
 }

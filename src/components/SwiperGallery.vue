@@ -3,7 +3,7 @@
     <transitionTemple :transitionData="'fade'">
       <div v-if="showSwiper" style="position:relative">
         <swiper :options="swiperOptionTop" ref="galleryTop" class="swiperTop banner">
-          <swiper-slide v-for="(item, index) in swiperData" :key="index">
+          <swiper-slide v-for="(item, index) in swiperData1" :key="index">
             <img v-lazy="item.bgPic" :key="item.bgPic">
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
@@ -22,7 +22,7 @@
               >{{item}}</div>
             </div>
             <swiper :options="swiperOptionThumbs" ref="galleryThumbs" class="swiperThumbs">
-              <swiper-slide v-for="(item, index) in swiperData" :key="index">
+              <swiper-slide v-for="(item, index) in swiperData1" :key="index">
                 <img v-lazy="item.bgPic" :key="item.bgPic">
                 <div v-if="text" class="swiper-bg">
                   <div>名称</div>
@@ -54,8 +54,19 @@ import { swiper, swiperSlide } from "vue-awesome-swiper";
 import { InitMixins } from "../lib/mixins/init.js";
 import transitionTemple from "@/components/transition.vue";
 export default {
-  name: "home",
+  name: "SwiperGallery",
   mixins: [InitMixins],
+  props: {
+    swiperData: {
+      type: Array
+    },
+    tagsData:{
+      type: Array
+    },
+    filtsData:{
+      type: Array
+    },
+  },
   components: {
     swiper,
     swiperSlide,
@@ -68,7 +79,7 @@ export default {
       sort: [],
       btn: ["空间单品", "空间分享"],
       sourceData: [],
-      swiperData: [],
+      swiperData1: [],
       text: "",
       currentSort: "",
       currentBtn: [0, 0],
@@ -98,6 +109,16 @@ export default {
       }
     };
   },
+  watch: {
+    swiperData: function(newValue) {
+      this.swiperData1 = newValue
+      this.sourceData = newValue
+      this.init(newValue);
+    },
+    tagsData: function(newValue) {
+      this.sort = newValue
+    },
+  },
   computed: {
     // 随时初始化轮播图
     swiperThumbs: function() {
@@ -114,30 +135,30 @@ export default {
     },
     // 界面显示隐藏，条件放一起，防止以后需求增加
     showSwiper: function() {
-      if (this.swiperData.length === 0) {
+      if (this.swiperData1.length === 0) {
         return false;
       } else {
         return true;
       }
     }
   },
-  mounted() {
-    // current swiper instance
-    // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
-    this.$post("/index", {}).then(response => {
-      let res = response.Data;
-      // 保存原数据
-      this.sourceData = res.switchs;
-      // 图片数据
-      this.init(res.switchs);
-      // 空间数据
-      this.sort = res.tags;
-    });
-  },
+  // mounted() {
+  //   // current swiper instance
+  //   // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
+  //   this.$post("/index", {}).then(response => {
+  //     let res = response.Data;
+  //     // 保存原数据
+  //     this.sourceData = res.switchs;
+  //     // 图片数据
+  //     this.init(res.switchs);
+  //     // 空间数据
+  //     this.sort = res.tags;
+  //   });
+  // }, 
   methods: {
     // 每次更新数据调用
     init: function(data) {
-      this.swiperData = JSON.parse(JSON.stringify(data));
+      this.swiperData1 = JSON.parse(JSON.stringify(data));
       this.$nextTick(() => {
         // 切换数据的时候返回第一张图
         this.swiperTop.slideTo(0, 0, false);
@@ -185,7 +206,7 @@ export default {
   }
 };
 </script>
-<style lang="less">
+<style lang="less" scoped>
 .banner {
   .swiper-button-next {
     width: 120px !important;
@@ -217,12 +238,7 @@ export default {
   .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
     background: #333;
   }
-}
-</style>
-
-<style lang="less" scoped>
-.home {
-  touch-action: none; //禁止 [Intervention] Ignored attempt to cancel a touchmove event with cancelable=false, for example because scrolling is in progress and cannot be interrupted 报错
+} //禁止 [Intervention] Ignored attempt to cancel a touchmove event with cancelable=false, for example because scrolling is in progress and cannot be interrupted 报错
   .swiperTop {
     width: 100%;
     height: 980px;
@@ -354,6 +370,5 @@ export default {
       bottom: "-160px";
     }
   }
-}
 </style>
 

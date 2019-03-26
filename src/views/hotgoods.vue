@@ -9,7 +9,7 @@
 <script>
 import {InitMixins} from '../lib/mixins/init.js'
 export default {
-  name: 'about.1',
+  name: 'hotgoods',
   mixins: [InitMixins],
   mounted() {
     console.log(this.brandId)

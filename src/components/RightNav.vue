@@ -23,7 +23,7 @@ export default {
         },
         {
           text: '热卖商品',
-          url: '/about'
+          url: '/hotgoods'
         },
         {
           text: '方案中心',
