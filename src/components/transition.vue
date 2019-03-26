@@ -1,9 +1,14 @@
-<template lang="">
-  <transition v-if="transitionData === 'bottom'"
+
+<!-- 
+
+ -->
+ <template lang="">
+  <transition v-if="transitionData === 'top'"
     name="bottom"
-    @before-enter="bottomVeforeEnter"
-    @enter="bottomEnter"
-    @after-enter="bottomAfterEnter">
+    v-on:before-enter="beforeEnter"
+    v-on:enter="enter"
+    v-on:leave="leave"
+    v-bind:css="false">
     <slot></slot>
   </transition>
   <transition v-else-if="transitionData === 'fade'"
@@ -14,6 +19,7 @@
     <slot></slot>
   </transition>
 </template>
+
 <script>
 import  Velocity from 'velocity-animate'
 export default {
@@ -23,26 +29,31 @@ export default {
        default: 'fade' // 默认fade
      },
      bottomStart: {
-       default: '0' // 默认fade
+       default: '-1080px' // 默认fade
      },
      bottomEnd: {
-       default: '-200px' // 默认fade
+       default: '0' // 默认fade
      }
   },
   methods: {
-    bottomVeforeEnter: (el) => {
-      el.style.bottom = this.bottomEnd
+    beforeEnter: function (el) {
+      el.style.top = this.bottomStart
     },
-    bottomEnter: (el, done) => {
+    enter: function (el, done) {
       Velocity(el, {
-        bottom: this.bottomStart
+        top: this.bottomEnd, 
       }, {
-        duration: 1000,
-        complete: done
+        duration: 1000 ,
+        complete: done 
       })
     },
-    bottomAfterEnter: () => {
-      console.log('从下方出现隐藏动画结束')
+    leave: function (el, done) {
+      Velocity(el, {
+        top: this.bottomStart, 
+      }, {
+        duration: 1000 ,
+        complete: done 
+      })
     },
     fadeVeforeEnter: (el) => {
       el.style.opacity = 0
