@@ -43,7 +43,17 @@
         <transitionTemple :transitionData="'top'">
         <div class="alone-box" v-if="aloneBox">
           <swiper :options="swiperGoods" class="swiperGoods">
-            <swiper-slide class="text"></swiper-slide>
+            <swiper-slide v-for="(item, index) in goods" :key="index" class="text">
+              <img class="goodsPic" :src="item.picture" alt="" srcset="">
+              <div class="goodsInfo">
+                <h3>{{item.productname}}</h3>
+                <p class="currentPrice">
+                  <del v-if="item.price !== item.pricediscount">￥{{item.price}}</del>
+                  <span>￥{{item.pricediscount}}</span>
+                </p>
+                <p class="shop">购买</p>
+              </div>
+            </swiper-slide>
             <div class="swiper-scrollbar" slot="scrollbar"></div>
           </swiper>
         </div>
@@ -78,6 +88,7 @@ export default {
     transitionTemple
   },
   data() {
+    const self = this
     return {
       aloneBox: false,
       tagsBox: true,
@@ -100,6 +111,11 @@ export default {
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev"
+        },
+        on: {
+          slideChangeTransitionEnd: function(){
+            self.goods = self.swiperData[this.activeIndex].goods
+          },
         },
       },
       swiperOptionThumbs: {
@@ -156,6 +172,9 @@ export default {
         return true;
       }
     },
+    currentIndex: function() {
+      return this.$refs.galleryTop.swiper.activeIndex
+    }
   },
   // mounted() {
   //   // current swiper instance
@@ -181,6 +200,9 @@ export default {
         // 绑定缩略图
         this.swiperTop.controller.control = this.swiperThumbs;
         this.swiperThumbs.controller.control = this.swiperTop;
+
+        // 获取当前第一张图片的商品
+        this.goods = this.swiperData[0].goods
       });
     },
     // 商品，缩略图等显示隐藏界面
@@ -217,9 +239,6 @@ export default {
     },
     handleClick: function() {
       this.tagsBox = !this.tagsBox;
-      this.$nextTick(()=>{
-        console.log(1111)
-      })
     }
   }
 };
@@ -260,6 +279,17 @@ export default {
   .swiperTop {
     width: 100%;
     height: 980px;
+    .swiper-slide img {
+      width: 100%;
+      height: auto;
+      -ms-transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+    }
   }
   .swiperThumbs {
     width: 100%;
@@ -267,6 +297,17 @@ export default {
     background-color: rgba(0, 0, 0, 1);
     padding: 10px 0;
     box-sizing: border-box;
+    .swiper-slide img {
+    width: 100%;
+    height: auto;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+  }
   }
   .swiperThumbs .swiper-slide {
     width: 20%;
@@ -278,17 +319,7 @@ export default {
   .swiperThumbs .swiper-slide-active {
     opacity: 1;
   }
-  .swiper-slide img {
-    width: 100%;
-    height: auto;
-    -ms-transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    position: absolute;
-    left: 50%;
-    top: 50%;
-  }
+  
   .swiper-slide img[lazy="loading"] {
     width: auto;
     height: auto;
@@ -356,25 +387,53 @@ export default {
     border-top-right-radius: 10px;
   }
   .alone-box{
-    width: 500px;
-    height: 820px;
+    width: 600px;
+    max-height: 820px;
     position: fixed;
     top: 100px;
     right: 10%;
     background-color: white;
     z-index: 6;
     .swiperGoods{
-      width: 500px;
-      height: 820px !important;
+       width: 600px;
+      max-height: 820px !important;
       overflow: hidden;
     }
     .swiper-slide.text {
-      font-size: 18px!important;
-      text-align: left!important;
-      height: auto;
-      -webkit-box-sizing: border-box;
       box-sizing: border-box;
-      padding: 30px;
+      display: flex;
+      flex-direction: row;
+      height: 300px;
+      padding: 20px;
+      overflow: hidden;
+      border-bottom: 1px solid #ccc;
+      text-align: left;
+    }
+    .goodsPic{
+      width: 260px;
+      height: 260px;
+      border: 1px solid #ccc;
+      margin-right: 20px;
+    }
+    .goodsInfo{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .currentPrice{
+      margin-top: 20px;
+      del{
+        margin-right: 20px;
+        font-size: 18px
+      }
+      span{
+        color: red;
+        font-size: 24px
+      }
+    }
+    .shop{
+      text-align: right;
     }
   }
   .divAnimationRemove {
