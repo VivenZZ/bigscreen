@@ -11,7 +11,7 @@
           <div class="swiper-button-next" slot="button-next"></div>
         </swiper>
         <div class="tags" :class="tagsBox ? 'divAnimationAdd': 'divAnimationRemove'">
-          <div class="showbtn" @click="handleClick">{{tagsBox? '关闭': '展开'}}</div>
+          <div class="showbtn" @click="handleClick">{{tagsBox? '收起': '展开'}}</div>
           <div class="tags-box">
             <div class="sort">
               <div
@@ -41,7 +41,12 @@
           </div>
         </div>
         <transitionTemple :transitionData="'top'">
-        <div class="alone-box" v-if="aloneBox"></div>
+        <div class="alone-box" v-if="aloneBox">
+          <swiper :options="swiperGoods" class="swiperGoods">
+            <swiper-slide class="text"></swiper-slide>
+            <div class="swiper-scrollbar" slot="scrollbar"></div>
+          </swiper>
+        </div>
         </transitionTemple>
       </div>
     </transitionTemple>
@@ -75,11 +80,12 @@ export default {
   data() {
     return {
       aloneBox: false,
-      tagsBox: false,
+      tagsBox: true,
       sort: [],
       btn: ["空间单品", "空间分享"],
       sourceData: [],
       swiperData1: [],
+      goods: [],
       text: "",
       currentSort: "",
       currentBtn: [0, 0],
@@ -94,7 +100,7 @@ export default {
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev"
-        }
+        },
       },
       swiperOptionThumbs: {
         observer: true,
@@ -106,7 +112,16 @@ export default {
         touchRatio: 0.2,
         slideToClickedSlide: true,
         freeDom: true
-      }
+      },
+      swiperGoods: {
+          direction: 'vertical',
+          slidesPerView: 'auto',
+          freeMode: true,
+          scrollbar: {
+            el: '.swiper-scrollbar'
+          },
+          mousewheel: true
+        }
     };
   },
   watch: {
@@ -140,7 +155,7 @@ export default {
       } else {
         return true;
       }
-    }
+    },
   },
   // mounted() {
   //   // current swiper instance
@@ -202,6 +217,9 @@ export default {
     },
     handleClick: function() {
       this.tagsBox = !this.tagsBox;
+      this.$nextTick(()=>{
+        console.log(1111)
+      })
     }
   }
 };
@@ -338,13 +356,26 @@ export default {
     border-top-right-radius: 10px;
   }
   .alone-box{
-    width: 30%;
-    height: 920px;
+    width: 500px;
+    height: 820px;
     position: fixed;
-    top: -980px;
+    top: 100px;
     right: 10%;
     background-color: white;
     z-index: 6;
+    .swiperGoods{
+      width: 500px;
+      height: 820px !important;
+      overflow: hidden;
+    }
+    .swiper-slide.text {
+      font-size: 18px!important;
+      text-align: left!important;
+      height: auto;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 30px;
+    }
   }
   .divAnimationRemove {
     animation: divAnimationRemove 0.5s;

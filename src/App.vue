@@ -31,7 +31,19 @@ export default {
   },
   methods: {
     className: function () {
-      return this.$store.state.skin
+      switch (this.$store.state.skin) {
+        case 'b18a2822-b4af-49ef-8758-996b5f57ab79':
+          return 'HH'
+        case "09dd00d9-e00e-4ae5-88a6-3b6f8e1cf8f2":
+          return 'TAO'
+        case "61f1aa48-6e88-471e-a423-599e4672566d":
+          return 'II'
+        case "4f885d42-28a6-4c49-9b5b-a02dd13cac08":
+          return 'MP'
+      
+        default:
+          break;
+      }
     },
     reload () {
       this.isRouterAlive = false

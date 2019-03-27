@@ -21,53 +21,67 @@
 </template>
 
 <script>
-import  Velocity from 'velocity-animate'
+import Velocity from "velocity-animate";
 export default {
-  name: 'transitionTemple',
+  name: "transitionTemple",
   props: {
-     transitionData: {
-       default: 'fade' // 默认fade
-     },
-     bottomStart: {
-       default: '-1080px' // 默认fade
-     },
-     bottomEnd: {
-       default: '0' // 默认fade
-     }
+    transitionData: {
+      default: "fade" // 默认fade
+    },
+    bottomStart: {
+      default: "-980px" // 默认fade
+    },
+    bottomEnd: {
+      default: "100px" // 默认fade
+    }
   },
   methods: {
-    beforeEnter: function (el) {
+    beforeEnter: function(el) {
       el.style.top = this.bottomStart
+      // el.style.width = 0
     },
-    enter: function (el, done) {
-      Velocity(el, {
-        top: this.bottomEnd, 
-      }, {
-        duration: 1000 ,
-        complete: done 
-      })
+    enter: function(el, done) {
+      Velocity(
+        el,
+        {
+          top: this.bottomEnd,
+          // width: '500px'
+        },
+        {
+          duration: 300,
+          complete: done
+        }
+      );
     },
-    leave: function (el, done) {
-      Velocity(el, {
-        top: this.bottomStart, 
-      }, {
-        duration: 1000 ,
-        complete: done 
-      })
+    leave: function(el, done) {
+      Velocity(
+        el,
+        {
+          top: this.bottomStart,
+          // width: '0'
+        },
+        {
+          duration: 300,
+          complete: done
+        }
+      );
     },
-    fadeVeforeEnter: (el) => {
-      el.style.opacity = 0
+    fadeVeforeEnter: el => {
+      el.style.opacity = 0;
     },
     fadeEnter: (el, done) => {
-      Velocity(el, {
-        opacity: 1
-      }, {
-        duration: 1000,
-        complete: done
-      })
+      Velocity(
+        el,
+        {
+          opacity: 1
+        },
+        {
+          duration: 500,
+          complete: done
+        }
+      );
     },
-    fadeAfterEnter: () => {
-    }
+    fadeAfterEnter: () => {}
   }
-}
+};
 </script>

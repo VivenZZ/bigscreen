@@ -20,6 +20,7 @@ export default {
     // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
     this.$post("/index", {}).then(response => {
       this.res = response.Data;
+      this.$store.commit('skinData', response.Data.tabbars)
       this.filtersData = ['空间单品', '空间分享']
     });
   },

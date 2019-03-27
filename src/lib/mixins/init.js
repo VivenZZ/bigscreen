@@ -19,6 +19,9 @@ export const InitMixins = {
     },
     loadingShow: function() {
       return this.$store.state.loadingShow
+    },
+    skinData: function() {
+      return this.$store.state.skinData
     }
   },
 }
